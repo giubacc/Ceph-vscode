@@ -7,7 +7,7 @@ ARG USER_GID=$USER_UID
 # Configure apt and install packages
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get -y install sudo bash-completion docker-compose curl \
+    && apt-get -y install ssh sudo bash-completion docker-compose curl \
     && apt-get autoremove -y
 
 # Create the user
