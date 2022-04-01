@@ -7,7 +7,7 @@ ARG USER_GID=$USER_UID
 # Configure apt and install packages
 RUN apt-get update \
     && apt-get upgrade -y \
-    && apt-get -y install ssh sudo bash-completion docker-compose curl \
+    && apt-get -y install ssh sudo bash-completion docker-compose curl s3cmd \
     && apt-get autoremove -y
 
 # Create the user
@@ -21,5 +21,7 @@ RUN /bin/bash -c "cat /bashrc.patch >> /home/$USERNAME/.bashrc"
 ADD install-deps.sh /
 ADD debian /
 RUN /install-deps.sh
+
+RUN apt-get autoremove -y
 
 USER $USERNAME

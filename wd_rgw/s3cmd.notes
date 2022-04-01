@@ -1,0 +1,5 @@
+#list buckets
+s3cmd --no-ssl --access_key=key --host=localhost:7480 -c s3cmd.cfg ls
+
+#add bucket
+s3cmd --no-ssl --host=localhost:7480 -c s3cmd.cfg mb s3://test
