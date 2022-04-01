@@ -1,5 +1,19 @@
 {
     "version": "2.0.0",
     "tasks": [
+        {
+            "label": "build ceph",
+            "type": "shell",
+            "command": "./do_cmake.sh; cd ${workspaceFolder}/build; ninja",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "rm -rf ${workspaceFolder}/build",
+        },
     ]
 }
