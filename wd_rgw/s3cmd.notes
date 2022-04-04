@@ -1,5 +1,13 @@
 #list buckets
-s3cmd --no-ssl --access_key=key --host=localhost:7480 -c s3cmd.cfg ls
+s3cmd --no-ssl =localhost:7480 -c s3cmd.cfg ls
+
+# --host can be omitted if defined in s3cmd.cfg
 
 #add bucket
-s3cmd --no-ssl --host=localhost:7480 -c s3cmd.cfg mb s3://test
+s3cmd --no-ssl -c s3cmd.cfg mb s3://test
+
+#add file
+s3cmd --no-ssl -c s3cmd.cfg put myfile s3://test
+
+#remove file
+s3cmd --no-ssl -c s3cmd.cfg rm s3://test/myfile
