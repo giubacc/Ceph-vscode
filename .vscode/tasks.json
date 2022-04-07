@@ -2,14 +2,23 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build ceph",
+            "label": "build [ALL]",
             "type": "shell",
-            "command": "./do_cmake.sh; cd ${workspaceFolder}/build; ninja",
+            "command": "./do_cmake.sh; cd ${workspaceFolder}/build; ninja -j 4",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
         },
+        {
+            "label": "build [RADOSGW]",
+            "type": "shell",
+            "command": "./do_cmake.sh; cd ${workspaceFolder}/build; ninja radosgw -j 4",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },        
         {
             "label": "clean",
             "type": "shell",
