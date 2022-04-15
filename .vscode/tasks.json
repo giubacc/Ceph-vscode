@@ -4,7 +4,7 @@
         {
             "label": "build [ALL]",
             "type": "shell",
-            "command": "./do_cmake.sh; cd ${workspaceFolder}/build; ninja -j 4",
+            "command": "./do_cmake.sh -DWITH_CCACHE=ON; cd ${workspaceFolder}/build; ninja -j 4",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -13,7 +13,7 @@
         {
             "label": "build [RADOSGW]",
             "type": "shell",
-            "command": "./do_cmake.sh; cd ${workspaceFolder}/build; ninja radosgw -j 4",
+            "command": "./do_cmake.sh -DWITH_CCACHE=ON; cd ${workspaceFolder}/build; ninja radosgw -j 4",
             "group": {
                 "kind": "build",
                 "isDefault": true

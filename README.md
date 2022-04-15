@@ -1,6 +1,6 @@
 # Ceph development with Visual Studio Code
 
-### Requirements
+## Requirements
 
 - A Linux host
 - [Docker](https://docs.docker.com/)
@@ -28,11 +28,12 @@ From inside the container, users will be able to access the host's Docker engine
 
 ## Build
 
-To build the entire Ceph project simply press: `ctrl + shift + b`
+To build Ceph simply press: `ctrl + shift + b`  
+
 ## Debug services
 
-### radosgw
+### radosgw with dbstore
 
-The configured `radosgw` debug setting will use the `wd_rgw` directory as working directory.  
-Inside that has been placed a configuration file for the `s3cmd` S3 client that is already configured for the usage with `radosgw`.  
-Examples of commands you can use with that have been placed into `s3cmd.notes` file. 
+`radosgw` has a debug configuration set up to use `dbstore` backend with `wd_rgw_dbstore` directory as working directory.  
+A configuration file for `s3cmd` S3 client has been placed into that. It has been already configured for the usage with the local `radosgw`.  
+Examples of commands you can use with that have been placed into `s3cmd.notes` file.

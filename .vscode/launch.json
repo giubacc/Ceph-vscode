@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug radosgw",
+            "name": "debug radosgw [dbstore]",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/bin/radosgw",
@@ -10,11 +10,11 @@
                      "-i", "foo",        
                      "--debug-rgw", "15",        
                      "--no-mon-config",        
-                     "--rgw-data", "${workspaceFolder}/wd_rgw",        
-                     "--run-dir", "${workspaceFolder}/wd_rgw",        
+                     "--rgw-data", "${workspaceFolder}/wd_rgw_dbstore",        
+                     "--run-dir", "${workspaceFolder}/wd_rgw_dbstore",        
                      "-d"],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/wd_rgw",
+            "cwd": "${workspaceFolder}/wd_rgw_dbstore",
             "environment": [
             ],
             "externalConsole": false,
