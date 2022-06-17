@@ -4,6 +4,7 @@
             "name": "ceph-gcc",
             "includePath": [
                 "${workspaceFolder}/src",
+                "${workspaceFolder}/src/rgw",
                 "${workspaceFolder}/src/test"
             ],
             "defines": [],

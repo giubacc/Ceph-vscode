@@ -34,6 +34,6 @@ To build Ceph simply press: `ctrl + shift + b`
 
 ### radosgw with dbstore
 
-`radosgw` has a debug configuration set up to use `dbstore` backend with `wd_rgw_dbstore` directory as working directory.  
+`radosgw` has debug configurations set up to use `dbstore` and `simplefile` backend with `wd_rgw` directory as working directory.  
 A configuration file for `s3cmd` S3 client has been placed into that. It has been already configured for the usage with the local `radosgw`.  
 Examples of commands you can use with that have been placed into `s3cmd.notes` file.

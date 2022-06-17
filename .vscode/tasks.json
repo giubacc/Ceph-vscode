@@ -1,28 +1,58 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build [ALL]",
-            "type": "shell",
-            "command": "./do_cmake.sh -DWITH_CCACHE=ON; cd ${workspaceFolder}/build; ninja -j 4",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-        },
-        {
-            "label": "build [RADOSGW]",
-            "type": "shell",
-            "command": "./do_cmake.sh -DWITH_CCACHE=ON; cd ${workspaceFolder}/build; ninja radosgw -j 4",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-        },        
-        {
-            "label": "clean",
-            "type": "shell",
-            "command": "rm -rf ${workspaceFolder}/build",
-        },
-    ]
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "build [ALL]",
+          "type": "shell",
+          "command": "./do_cmake.sh -DWITH_CCACHE=ON; cd ${workspaceFolder}/build; ninja -j6",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "cmake [RADOSGW]",
+          "type": "shell",
+          "command": "./do_cmake.sh",
+          "args": ["-DENABLE_GIT_VERSION=ON",
+                   "-DWITH_PYTHON3=3",
+                   "-DWITH_CCACHE=ON",
+                   "-DWITH_TESTS=OFF",
+                   "-DCMAKE_BUILD_TYPE=Debug",
+                   "-DWITH_RADOSGW_AMQP_ENDPOINT=OFF",
+                   "-DWITH_RADOSGW_KAFKA_ENDPOINT=OFF",
+                   "-DWITH_RADOSGW_SELECT_PARQUET=OFF",
+                   "-DWITH_RADOSGW_MOTR=OFF",
+                   "-DWITH_RADOSGW_DBSTORE=ON",
+                   "-DWITH_RADOSGW_LUA_PACKAGES=OFF",
+                   "-DWITH_MANPAGE=OFF",
+                   "-DWITH_OPENLDAP=OFF",
+                   "-DWITH_LTTNG=OFF",
+                   "-DWITH_RDMA=OFF",
+                   "-DWITH_SYSTEM_BOOST=ON"
+                  ],
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "build [RADOSGW]",
+          "type": "shell",
+          "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j6 bin/radosgw",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "clean",
+          "type": "shell",
+          "command": "rm -rf ${workspaceFolder}/build; rm -rf ${workspaceFolder}/build.ccache",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+  ]
 }
