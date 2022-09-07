@@ -30,6 +30,6 @@ From inside the container, users will be able to access the host's Docker engine
 
 To build radosgw simply press: `ctrl + shift + b` and choose an option.
 
-### Debug radosgw with dbstore & sfs
+## Debug radosgw with dbstore & sfs
 
 `radosgw` has debug configurations set up to use `dbstore` and `sfs` SAL backends with `wd_dbstore` and `wd_sfs` directories as working directories.  
