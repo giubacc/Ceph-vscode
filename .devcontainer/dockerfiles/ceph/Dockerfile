@@ -4,8 +4,12 @@ ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
+RUN zypper ar https://download.opensuse.org/repositories/home:/jluis/openSUSE_Tumbleweed/ sqliteorm
+RUN zypper --gpg-auto-import-keys ref
+RUN zypper -n install libsqliteorm
+
 RUN zypper -n install sudo dnf bash make git ccache cmake ninja gdb\
-  jq binutils bash-completion curl docker docker-compose
+  jq binutils bash-completion curl docker docker-compose vi
 RUN zypper -n install --no-recommends systemd-rpm-macros rpm-build
 RUN zypper -n install --no-recommends \
   babeltrace-devel 'cmake>3.5' cryptsetup-devel cunit-devel fdupes \
@@ -23,17 +27,17 @@ RUN zypper -n install --no-recommends \
   systemd-rpm-macros valgrind-devel which xfsprogs-devel xmlstarlet
 # Use prebuilt boost
 RUN zypper -n install --no-recommends \
-      libboost_atomic1_79_0-devel \
-      libboost_context1_79_0-devel \
-      libboost_coroutine1_79_0-devel \
-      libboost_filesystem1_79_0-devel \
-      libboost_iostreams1_79_0-devel \
-      libboost_program_options1_79_0-devel \
-      libboost_python-py3-1_79_0-devel \
-      libboost_random1_79_0-devel \
-      libboost_regex1_79_0-devel \
-      libboost_system1_79_0-devel \
-      libboost_thread1_79_0-devel \
+      libboost_atomic1_80_0-devel \
+      libboost_context1_80_0-devel \
+      libboost_coroutine1_80_0-devel \
+      libboost_filesystem1_80_0-devel \
+      libboost_iostreams1_80_0-devel \
+      libboost_program_options1_80_0-devel \
+      libboost_python-py3-1_80_0-devel \
+      libboost_random1_80_0-devel \
+      libboost_regex1_80_0-devel \
+      libboost_system1_80_0-devel \
+      libboost_thread1_80_0-devel \
       librabbitmq-devel \
       librdkafka-devel \
  && zypper clean --all

@@ -2,28 +2,25 @@
   "version": "2.0.0",
   "tasks": [
       {
-          "label": "build [ALL]",
+          "label": "clean dbstore dir",
           "type": "shell",
-          "command": "./do_cmake.sh -DWITH_CCACHE=ON; cd ${workspaceFolder}/build; ninja -j6",
-          "group": {
-              "kind": "build",
-              "isDefault": true
-          },
+          "command": "sudo rm -rf /var/lib/ceph/radosgw && sudo mkdir -p /var/lib/ceph/radosgw && sudo chmod 777 /var/lib/ceph/radosgw",
       },
       {
-          "label": "cmake [RADOSGW]",
+          "label": "cmake",
           "type": "shell",
           "command": "./do_cmake.sh",
           "args": ["-DENABLE_GIT_VERSION=ON",
                    "-DWITH_PYTHON3=3",
                    "-DWITH_CCACHE=ON",
-                   "-DWITH_TESTS=OFF",
+                   "-DWITH_TESTS=ON",
                    "-DCMAKE_BUILD_TYPE=Debug",
                    "-DWITH_RADOSGW_AMQP_ENDPOINT=OFF",
                    "-DWITH_RADOSGW_KAFKA_ENDPOINT=OFF",
                    "-DWITH_RADOSGW_SELECT_PARQUET=OFF",
                    "-DWITH_RADOSGW_MOTR=OFF",
                    "-DWITH_RADOSGW_DBSTORE=ON",
+                   "-DWITH_RADOSGW_SFS=ON",
                    "-DWITH_RADOSGW_LUA_PACKAGES=OFF",
                    "-DWITH_MANPAGE=OFF",
                    "-DWITH_OPENLDAP=OFF",
@@ -37,9 +34,54 @@
           },
       },
       {
-          "label": "build [RADOSGW]",
+          "label": "build [unittest_rgw_sfs_sqlite_users]",
           "type": "shell",
-          "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j6 bin/radosgw",
+          "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j4 bin/unittest_rgw_sfs_sqlite_users",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "build [unittest_rgw_sfs_sqlite_objects]",
+          "type": "shell",
+          "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j4 bin/unittest_rgw_sfs_sqlite_objects",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "build [unittest_rgw_sfs_sqlite_versioned_objects]",
+          "type": "shell",
+          "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j4 bin/unittest_rgw_sfs_sqlite_versioned_objects",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "build [unittest_rgw_sfs_sqlite_buckets]",
+          "type": "shell",
+          "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j4 bin/unittest_rgw_sfs_sqlite_buckets",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "build [radosgw]",
+          "type": "shell",
+          "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j4 bin/radosgw",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "build [radosgw-admin]",
+          "type": "shell",
+          "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j4 bin/radosgw-admin",
           "group": {
               "kind": "build",
               "isDefault": true

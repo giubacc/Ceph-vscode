@@ -7,14 +7,13 @@
           "request": "launch",
           "program": "${workspaceFolder}/build/bin/radosgw",
           "args": ["--rgw-backend-store=dbstore",
-                   "-i", "foo",
                    "--debug-rgw", "15",
                    "--no-mon-config",
-                   "--rgw-data", "${workspaceFolder}/wd_rgw",
-                   "--run-dir", "${workspaceFolder}/wd_rgw",
+                   "--rgw-data", "${workspaceFolder}/wd_dbstore",
+                   "--run-dir", "${workspaceFolder}/wd_dbstore",
                    "-d"],
           "stopAtEntry": false,
-          "cwd": "${workspaceFolder}/wd_rgw",
+          "cwd": "${workspaceFolder}/wd_dbstore",
           "environment": [
           ],
           "externalConsole": false,
@@ -28,19 +27,87 @@
           ],
       },
       {
-          "name": "debug radosgw [simplefile]",
+          "name": "debug radosgw [sfs]",
           "type": "cppdbg",
           "request": "launch",
           "program": "${workspaceFolder}/build/bin/radosgw",
-          "args": ["--rgw-backend-store=simplefile",
-                   "-i", "foo",
+          "args": ["--rgw-backend-store=sfs",
                    "--debug-rgw", "15",
                    "--no-mon-config",
-                   "--rgw-data", "${workspaceFolder}/wd_rgw",
-                   "--run-dir", "${workspaceFolder}/wd_rgw",
+                   "--rgw-data", "${workspaceFolder}/wd_sfs",
+                   "--run-dir", "${workspaceFolder}/wd_sfs",
+                   "--rgw_sfs_data_path=${workspaceFolder}/wd_sfs",
                    "-d"],
           "stopAtEntry": false,
-          "cwd": "${workspaceFolder}/wd_rgw",
+          "cwd": "${workspaceFolder}/wd_sfs",
+          "environment": [{ "name": "RGW_DEFAULT_USER_SYSTEM", "value": "1" }],
+          "externalConsole": false,
+          "MIMode": "gdb",
+          "setupCommands": [
+              {
+                  "description": "Enable pretty-printing for gdb",
+                  "text": "-enable-pretty-printing",
+                  "ignoreFailures": true
+              }
+          ],
+      },
+      {
+          "name": "debug radosgw-admin [realm create]",
+          "type": "cppdbg",
+          "request": "launch",
+          "program": "${workspaceFolder}/build/bin/radosgw-admin",
+          "args": ["--no-mon-config",
+                   "--rgw_backend_store=sfs",
+                   "--rgw-data", "${workspaceFolder}/wd_admin",
+                   "--run-dir", "${workspaceFolder}/wd_admin",
+                   "--rgw_sfs_data_path=${workspaceFolder}/wd_admin",
+                   "--debug-rgw", "20",
+                   "--uid=testid",
+                   "--rgw-realm=kingdom",
+                   "--default",
+                   "realm", "create"],
+          "stopAtEntry": false,
+          "cwd": "${workspaceFolder}/wd_admin",
+          "environment": [
+          ],
+          "externalConsole": false,
+          "MIMode": "gdb",
+          "setupCommands": [
+              {
+                  "description": "Enable pretty-printing for gdb",
+                  "text": "-enable-pretty-printing",
+                  "ignoreFailures": true
+              }
+          ],
+      },
+      {
+          "name": "debug test [unittest_rgw_sfs_sqlite_users]",
+          "type": "cppdbg",
+          "request": "launch",
+          "program": "${workspaceFolder}/build/bin/unittest_rgw_sfs_sqlite_users",
+          "args": [""],
+          "stopAtEntry": false,
+          "cwd": "${workspaceFolder}/wd_test",
+          "environment": [
+          ],
+          "externalConsole": false,
+          "MIMode": "gdb",
+          "setupCommands": [
+              {
+                  "description": "Enable pretty-printing for gdb",
+                  "text": "-enable-pretty-printing",
+                  "ignoreFailures": true
+              }
+          ],
+      },
+      {
+          "name": "debug test [unittest_rgw_sfs_sqlite_buckets]",
+          "type": "cppdbg",
+          "request": "launch",
+          "program": "${workspaceFolder}/build/bin/unittest_rgw_sfs_sqlite_buckets",
+          "args": [""],
+          "stopAtEntry": false,
+          "cwd": "${workspaceFolder}/wd_test",
           "environment": [
           ],
           "externalConsole": false,

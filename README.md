@@ -26,14 +26,10 @@ This ensures that every modification from inside the container will be completel
 Moreover, host's user `~/.ssh` directory will be mounted on the container's user `~/.ssh` directory. This is especially convenient if an ssh authentication type is configured to work with GitHub.  
 From inside the container, users will be able to access the host's Docker engine as if they were just in a regular host's shell.  
 
-## Build
+## Build radosgw with dbstore & sfs
 
-To build Ceph simply press: `ctrl + shift + b`  
+To build radosgw simply press: `ctrl + shift + b` and choose an option.
 
-## Debug services
+### Debug radosgw with dbstore & sfs
 
-### radosgw with dbstore
-
-`radosgw` has debug configurations set up to use `dbstore` and `simplefile` backend with `wd_rgw` directory as working directory.  
-A configuration file for `s3cmd` S3 client has been placed into that. It has been already configured for the usage with the local `radosgw`.  
-Examples of commands you can use with that have been placed into `s3cmd.notes` file.
+`radosgw` has debug configurations set up to use `dbstore` and `sfs` SAL backends with `wd_dbstore` and `wd_sfs` directories as working directories.  
