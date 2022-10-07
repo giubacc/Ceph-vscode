@@ -5,14 +5,15 @@
           "includePath": [
               "${workspaceFolder}/src",
               "${workspaceFolder}/src/rgw",
+              "${workspaceFolder}/src/common",
+              "${workspaceFolder}/src/include",
               "${workspaceFolder}/src/test"
           ],
           "defines": [],
           "compilerPath": "/usr/bin/gcc",
           "cStandard": "c11",
           "cppStandard": "c++17",
-          "intelliSenseMode": "gcc-x86",
-          "configurationProvider": "ms-vscode.cmake-tools"
+          "intelliSenseMode": "linux-gcc-x64"
       }
   ],
   "version": 4

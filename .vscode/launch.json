@@ -11,6 +11,8 @@
                    "--no-mon-config",
                    "--rgw-data", "${workspaceFolder}/wd_dbstore",
                    "--run-dir", "${workspaceFolder}/wd_dbstore",
+                   "--dbstore_db_dir", "${workspaceFolder}/wd_dbstore",
+                   "--rgw_thread_pool_size", "1",
                    "-d"],
           "stopAtEntry": false,
           "cwd": "${workspaceFolder}/wd_dbstore",
@@ -37,12 +39,14 @@
                    "--rgw-data", "${workspaceFolder}/wd_sfs",
                    "--run-dir", "${workspaceFolder}/wd_sfs",
                    "--rgw_sfs_data_path=${workspaceFolder}/wd_sfs",
+                   "--rgw_thread_pool_size", "1",
                    "-d"],
           "stopAtEntry": false,
           "cwd": "${workspaceFolder}/wd_sfs",
           "environment": [{ "name": "RGW_DEFAULT_USER_SYSTEM", "value": "1" }],
           "externalConsole": false,
           "MIMode": "gdb",
+          "miDebuggerPath": "/usr/bin/gdb",
           "setupCommands": [
               {
                   "description": "Enable pretty-printing for gdb",
@@ -105,6 +109,26 @@
           "type": "cppdbg",
           "request": "launch",
           "program": "${workspaceFolder}/build/bin/unittest_rgw_sfs_sqlite_buckets",
+          "args": [""],
+          "stopAtEntry": false,
+          "cwd": "${workspaceFolder}/wd_test",
+          "environment": [
+          ],
+          "externalConsole": false,
+          "MIMode": "gdb",
+          "setupCommands": [
+              {
+                  "description": "Enable pretty-printing for gdb",
+                  "text": "-enable-pretty-printing",
+                  "ignoreFailures": true
+              }
+          ],
+      },
+      {
+          "name": "debug test [unittest_rgw_sfs_sfs_bucket]",
+          "type": "cppdbg",
+          "request": "launch",
+          "program": "${workspaceFolder}/build/bin/unittest_rgw_sfs_sfs_bucket",
           "args": [""],
           "stopAtEntry": false,
           "cwd": "${workspaceFolder}/wd_test",

@@ -2,12 +2,7 @@
   "version": "2.0.0",
   "tasks": [
       {
-          "label": "clean dbstore dir",
-          "type": "shell",
-          "command": "sudo rm -rf /var/lib/ceph/radosgw && sudo mkdir -p /var/lib/ceph/radosgw && sudo chmod 777 /var/lib/ceph/radosgw",
-      },
-      {
-          "label": "cmake",
+          "label": "cmake-s3gw",
           "type": "shell",
           "command": "./do_cmake.sh",
           "args": ["-DENABLE_GIT_VERSION=ON",
@@ -22,6 +17,32 @@
                    "-DWITH_RADOSGW_DBSTORE=ON",
                    "-DWITH_RADOSGW_SFS=ON",
                    "-DWITH_RADOSGW_LUA_PACKAGES=OFF",
+                   "-DWITH_MANPAGE=OFF",
+                   "-DWITH_OPENLDAP=OFF",
+                   "-DWITH_LTTNG=OFF",
+                   "-DWITH_RDMA=OFF",
+                   "-DWITH_SYSTEM_BOOST=ON"
+                  ],
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "cmake-upstream",
+          "type": "shell",
+          "command": "./do_cmake.sh",
+          "args": ["-DENABLE_GIT_VERSION=ON",
+                   "-DWITH_PYTHON3=3",
+                   "-DWITH_CCACHE=ON",
+                   "-DWITH_TESTS=ON",
+                   "-DCMAKE_BUILD_TYPE=Debug",
+                   "-DWITH_RADOSGW_AMQP_ENDPOINT=OFF",
+                   "-DWITH_RADOSGW_KAFKA_ENDPOINT=OFF",
+                   "-DWITH_RADOSGW_SELECT_PARQUET=OFF",
+                   "-DWITH_RADOSGW_MOTR=OFF",
+                   "-DWITH_RADOSGW_DBSTORE=ON",
+                   "-DWITH_RADOSGW_LUA_PACKAGES=ON",
                    "-DWITH_MANPAGE=OFF",
                    "-DWITH_OPENLDAP=OFF",
                    "-DWITH_LTTNG=OFF",
@@ -70,6 +91,15 @@
           },
       },
       {
+          "label": "build [unittest_rgw_sfs_sfs_bucket]",
+          "type": "shell",
+          "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j4 bin/unittest_rgw_sfs_sfs_bucket",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
           "label": "build [radosgw]",
           "type": "shell",
           "command": "mkdir -p ${workspaceFolder}/build.ccache; export CCACHE_DIR='${workspaceFolder}/build.ccache'; cd ${workspaceFolder}/build; ninja -j4 bin/radosgw",
@@ -88,7 +118,16 @@
           },
       },
       {
-          "label": "clean",
+          "label": "clean-build",
+          "type": "shell",
+          "command": "rm -rf ${workspaceFolder}/build",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          },
+      },
+      {
+          "label": "clean-all",
           "type": "shell",
           "command": "rm -rf ${workspaceFolder}/build; rm -rf ${workspaceFolder}/build.ccache",
           "group": {

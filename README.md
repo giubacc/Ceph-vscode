@@ -26,10 +26,25 @@ This ensures that every modification from inside the container will be completel
 Moreover, host's user `~/.ssh` directory will be mounted on the container's user `~/.ssh` directory. This is especially convenient if an ssh authentication type is configured to work with GitHub.  
 From inside the container, users will be able to access the host's Docker engine as if they were just in a regular host's shell.  
 
-## Build radosgw with dbstore & sfs
+## Build radosgw with dbstore & sfs backends
 
-To build radosgw simply press: `ctrl + shift + b` and choose an option.
+To build radosgw, simply press: `ctrl + shift + b` and choose an option.  
+Typically, for an upstream build of radosgw you want to execute in sequence these tasks:
 
-## Debug radosgw with dbstore & sfs
+- `cmake-upstream`
+- `build [radosgw]`
+
+If you are developing the radosgw in the context of [s3gw](https://github.com/aquarist-labs/s3gw/) project, you can execute:
+
+- `cmake-s3gw`
+- `build [radosgw]`
+
+Some tasks have been defined for building certain unit tests, for example:
+
+- `build [unittest_rgw_sfs_sfs_bucket]`
+
+You can use these templates to define other build configurations.
+
+## Debug radosgw with dbstore & sfs backends
 
 `radosgw` has debug configurations set up to use `dbstore` and `sfs` SAL backends with `wd_dbstore` and `wd_sfs` directories as working directories.  

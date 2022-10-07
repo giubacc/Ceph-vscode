@@ -4,10 +4,10 @@
 
  "initializeCommand": "/bin/bash ${localWorkspaceFolder}/.devcontainer/icstart.sh ${localWorkspaceFolder}",
  "build": {	"args": {
-   "USERNAME": "${localEnv:USER}",
+   "USERNAME": "${localEnv:USER}"
  }},
 
-  "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined", "--net", "ceph-vscode"],
+ "runArgs": [ "-p", "7480:7480", "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined", "--net", "ceph-vscode"],
  "settings": {
    "terminal.integrated.profiles.linux": {
      "bash (login)": {
